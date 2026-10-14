@@ -7,25 +7,24 @@ let configured = false;
  * This module must NEVER be imported in client components.
  */
 export function getCloudinary() {
+  const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
+  const apiKey = process.env.CLOUDINARY_API_KEY;
+  const apiSecret = process.env.CLOUDINARY_API_SECRET;
+
+  if (!cloudName || !apiKey || !apiSecret) {
+    throw new Error(
+      'Cloudinary environment variables are not properly configured. ' +
+      'Please check CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, and CLOUDINARY_API_SECRET in your .env.local file.'
+    );
+  }
+
   if (!configured) {
-    const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
-    const apiKey = process.env.CLOUDINARY_API_KEY;
-    const apiSecret = process.env.CLOUDINARY_API_SECRET;
-
-    if (!cloudName || !apiKey || !apiSecret) {
-      throw new Error(
-        'Cloudinary environment variables are not configured. ' +
-        'Please set CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, and CLOUDINARY_API_SECRET.'
-      );
-    }
-
     cloudinary.config({
-      cloud_name: cloudName,
-      api_key: apiKey,
-      api_secret: apiSecret,
+      cloud_name: cloudName.trim(),
+      api_key: apiKey.trim(),
+      api_secret: apiSecret.trim(),
       secure: true,
     });
-
     configured = true;
   }
 
@@ -33,7 +32,18 @@ export function getCloudinary() {
 }
 
 export const CLOUDINARY_FOLDER = 'orion-terra/properties';
-export const ALLOWED_MIME_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
+export const ALLOWED_MIME_TYPES = [
+  'image/jpeg',
+  'image/jpg',
+  'image/png',
+  'image/webp',
+  'image/avif',
+  'image/gif',
+  'image/heic',
+  'image/heif',
+  'image/pjpeg',
+  'image/x-png',
+];
 export const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024; // 10 MB
 
 /**
@@ -54,12 +64,13 @@ export async function uploadImageToCloudinary(
         use_filename: false,
         unique_filename: true,
         overwrite: false,
-        // Apply quality auto and format auto for optimal delivery
         transformation: [{ quality: 'auto', fetch_format: 'auto' }],
       },
       (error, result) => {
         if (error || !result) {
-          reject(error ?? new Error('Cloudinary upload returned no result'));
+          const errMsg = error?.message || 'Cloudinary upload returned no result';
+          console.error('Cloudinary upload_stream error:', error);
+          reject(new Error(errMsg));
           return;
         }
         resolve({

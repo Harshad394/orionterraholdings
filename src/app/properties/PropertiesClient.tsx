@@ -71,7 +71,7 @@ export function PropertiesClient({ initialProperties }: PropertiesClientProps) {
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 space-y-8">
       {/* Header */}
       <div className="space-y-3">
-        <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">
+        <span className="text-xs font-bold uppercase tracking-widest text-amber-400">
           Land Opportunities Catalog
         </span>
         <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight">

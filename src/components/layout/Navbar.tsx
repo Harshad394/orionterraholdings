@@ -28,14 +28,14 @@ export function Navbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 h-20">
         {/* Brand Logo */}
         <Link href="/" className="flex items-center gap-3 group">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 group-hover:border-emerald-500/60 transition-all">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-400 group-hover:border-amber-500/60 transition-all shadow-[0_0_15px_rgba(245,158,11,0.15)]">
             <span className="font-bold text-xl tracking-wider gold-gradient-text">OT</span>
           </div>
           <div className="flex flex-col">
-            <span className="text-xl font-bold tracking-tight text-white group-hover:text-emerald-400 transition-colors">
-              ORION TERRA
+            <span className="text-xl font-bold tracking-tight text-white group-hover:text-amber-400 transition-colors">
+              ORION TERRA HOLDING'S
             </span>
-            <span className="text-[10px] tracking-widest text-emerald-400/80 font-medium uppercase">
+            <span className="text-[10px] tracking-widest text-amber-400/80 font-medium uppercase">
               Land Marketplace
             </span>
           </div>
@@ -49,11 +49,10 @@ export function Navbar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-all ${
-                  active
-                    ? 'text-emerald-400 bg-emerald-500/10 border border-emerald-500/20'
-                    : 'text-gray-300 hover:text-white hover:bg-white/5'
-                }`}
+                className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-all ${active
+                  ? 'text-amber-400 bg-amber-500/10 border border-amber-500/20 shadow-[0_0_10px_rgba(245,158,11,0.1)]'
+                  : 'text-gray-300 hover:text-white hover:bg-white/5'
+                  }`}
               >
                 {item.name}
               </Link>
@@ -65,7 +64,7 @@ export function Navbar() {
         <div className="hidden md:flex items-center gap-4">
           <Link
             href="/admin/login"
-            className="text-xs font-medium text-gray-400 hover:text-gray-200 transition-colors px-2 py-1"
+            className="text-xs font-medium text-gray-400 hover:text-amber-400 transition-colors px-2 py-1"
           >
             Admin Access
           </Link>
@@ -101,13 +100,12 @@ export function Navbar() {
                   key={item.name}
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-lg text-base font-medium transition-colors ${
-                    active
-                      ? 'text-emerald-400 bg-emerald-500/10 border border-emerald-500/20'
-                      : 'text-gray-300 hover:text-white hover:bg-white/5'
-                  }`}
+                  className={`flex items-center gap-3 px-4 py-3 rounded-lg text-base font-medium transition-colors ${active
+                    ? 'text-amber-400 bg-amber-500/10 border border-amber-500/20'
+                    : 'text-gray-300 hover:text-white hover:bg-white/5'
+                    }`}
                 >
-                  <IconComponent className="w-5 h-5 text-emerald-400" />
+                  <IconComponent className="w-5 h-5 text-amber-400" />
                   <span>{item.name}</span>
                 </Link>
               );
@@ -124,7 +122,7 @@ export function Navbar() {
             <Link
               href="/admin/login"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-center text-xs text-gray-400 hover:text-white py-2"
+              className="text-center text-xs text-gray-400 hover:text-amber-400 py-2"
             >
               Admin Portal
             </Link>

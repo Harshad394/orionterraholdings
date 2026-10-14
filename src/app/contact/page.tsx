@@ -8,7 +8,7 @@ export default function ContactPage() {
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 lg:py-16 space-y-12">
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto space-y-3">
-        <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">
+        <span className="text-xs font-bold uppercase tracking-widest text-amber-400">
           Get in Touch
         </span>
         <h1 className="text-4xl sm:text-5xl font-black text-white tracking-tight">
@@ -22,7 +22,7 @@ export default function ContactPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
         {/* Contact Info Cards */}
         <div className="space-y-6">
-          <div className="rounded-2xl border border-white/10 bg-[#111C2E] p-6 space-y-6">
+          <div className="rounded-2xl border border-white/10 bg-[#111C2E] p-6 space-y-6 shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
             <h3 className="text-lg font-bold text-white border-b border-white/10 pb-3">
               Direct Channels
             </h3>
@@ -32,12 +32,12 @@ export default function ContactPage() {
               href={`tel:${siteConfig.contact.phone.replace(/[^0-9+]/g, '')}`}
               className="flex items-start gap-4 group p-3 rounded-xl hover:bg-white/5 transition-colors"
             >
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20">
                 <Phone className="h-5 w-5" />
               </div>
               <div>
                 <span className="block text-xs text-gray-400 font-medium">Phone Assistance</span>
-                <span className="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors">
+                <span className="text-sm font-bold text-white group-hover:text-amber-400 transition-colors">
                   {siteConfig.contact.phone}
                 </span>
               </div>
@@ -50,12 +50,12 @@ export default function ContactPage() {
               rel="noopener noreferrer"
               className="flex items-start gap-4 group p-3 rounded-xl hover:bg-white/5 transition-colors"
             >
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20">
                 <MessageSquare className="h-5 w-5" />
               </div>
               <div>
                 <span className="block text-xs text-gray-400 font-medium">WhatsApp Support</span>
-                <span className="text-sm font-bold text-emerald-400 group-hover:underline">
+                <span className="text-sm font-bold text-amber-400 group-hover:underline">
                   Chat Instantly on WhatsApp
                 </span>
               </div>
@@ -66,12 +66,12 @@ export default function ContactPage() {
               href={`mailto:${siteConfig.contact.email}`}
               className="flex items-start gap-4 group p-3 rounded-xl hover:bg-white/5 transition-colors"
             >
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20">
                 <Mail className="h-5 w-5" />
               </div>
               <div>
                 <span className="block text-xs text-gray-400 font-medium">Email Inquiry</span>
-                <span className="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors">
+                <span className="text-sm font-bold text-white group-hover:text-amber-400 transition-colors">
                   {siteConfig.contact.email}
                 </span>
               </div>
@@ -79,9 +79,9 @@ export default function ContactPage() {
           </div>
 
           {/* Office Address Placeholder */}
-          <div className="rounded-2xl border border-white/10 bg-[#111C2E] p-6 space-y-3">
+          <div className="rounded-2xl border border-white/10 bg-[#111C2E] p-6 space-y-3 shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
             <div className="flex items-center gap-2 text-sm font-bold text-white">
-              <MapPin className="h-4 w-4 text-emerald-400" />
+              <MapPin className="h-4 w-4 text-amber-400" />
               <span>Office Location</span>
             </div>
             <p className="text-xs text-gray-300 leading-relaxed">

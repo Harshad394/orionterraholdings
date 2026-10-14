@@ -109,24 +109,24 @@ export function InquiryForm({ propertyId, propertyTitle }: InquiryFormProps) {
         <h3 className="text-xl font-bold text-white">Inquire About This Opportunity</h3>
         <p className="text-xs text-gray-400 mt-1">
           Directly connect with the Orion Terra land advisory team regarding{' '}
-          <span className="text-emerald-400 font-semibold">{propertyId || 'this property'}</span>.
+          <span className="text-amber-400 font-semibold">{propertyId || 'this property'}</span>.
         </p>
       </div>
 
       {submittedData ? (
-        <div className="rounded-xl bg-emerald-500/10 border border-emerald-500/30 p-6 text-center space-y-4">
-          <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400">
+        <div className="rounded-xl bg-amber-500/10 border border-amber-500/30 p-6 text-center space-y-4">
+          <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-amber-500/20 text-amber-400">
             <CheckCircle2 className="h-6 w-6" />
           </div>
           <h4 className="text-lg font-bold text-white">Thank You for Your Interest</h4>
           <p className="text-xs text-gray-300 leading-relaxed">
             Your inquiry for property{' '}
-            <span className="text-emerald-400 font-semibold">{submittedData.propertyId || propertyId}</span> has been received. Our advisory team will contact you at{' '}
+            <span className="text-amber-400 font-semibold">{submittedData.propertyId || propertyId}</span> has been received. Our advisory team will contact you at{' '}
             <span className="text-white font-semibold">{formData.phone}</span>.
           </p>
 
           <div className="text-[11px] text-gray-400 bg-white/5 p-3 rounded-lg border border-white/10 text-center">
-            Status: <span className="text-emerald-400 font-semibold">New Inquiry Logged</span>
+            Status: <span className="text-amber-400 font-semibold">New Inquiry Logged</span>
             <br />
             Reference ID: <span className="font-mono text-gray-300">{submittedData.id}</span>
           </div>
@@ -172,7 +172,7 @@ export function InquiryForm({ propertyId, propertyTitle }: InquiryFormProps) {
 
           <div>
             <label className="block text-xs font-semibold text-gray-300 mb-1">
-              Full Name <span className="text-emerald-400">*</span>
+              Full Name <span className="text-amber-400">*</span>
             </label>
             <input
               type="text"
@@ -182,7 +182,7 @@ export function InquiryForm({ propertyId, propertyTitle }: InquiryFormProps) {
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               placeholder="e.g. Vikram Sharma"
               className={`w-full rounded-lg bg-[#17243A] border px-3.5 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none ${
-                fieldErrors.name ? 'border-red-500' : 'border-white/10 focus:border-emerald-500'
+                fieldErrors.name ? 'border-red-500' : 'border-white/10 focus:border-amber-500'
               }`}
             />
             {fieldErrors.name && (
@@ -193,7 +193,7 @@ export function InquiryForm({ propertyId, propertyTitle }: InquiryFormProps) {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-semibold text-gray-300 mb-1">
-                Phone Number <span className="text-emerald-400">*</span>
+                Phone Number <span className="text-amber-400">*</span>
               </label>
               <input
                 type="tel"
@@ -203,7 +203,7 @@ export function InquiryForm({ propertyId, propertyTitle }: InquiryFormProps) {
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 placeholder="+91 98765 43210"
                 className={`w-full rounded-lg bg-[#17243A] border px-3.5 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none ${
-                  fieldErrors.phone ? 'border-red-500' : 'border-white/10 focus:border-emerald-500'
+                  fieldErrors.phone ? 'border-red-500' : 'border-white/10 focus:border-amber-500'
                 }`}
               />
               {fieldErrors.phone && (
@@ -222,7 +222,7 @@ export function InquiryForm({ propertyId, propertyTitle }: InquiryFormProps) {
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="vikram@example.com"
                 className={`w-full rounded-lg bg-[#17243A] border px-3.5 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none ${
-                  fieldErrors.email ? 'border-red-500' : 'border-white/10 focus:border-emerald-500'
+                  fieldErrors.email ? 'border-red-500' : 'border-white/10 focus:border-amber-500'
                 }`}
               />
               {fieldErrors.email && (
@@ -233,7 +233,7 @@ export function InquiryForm({ propertyId, propertyTitle }: InquiryFormProps) {
 
           <div>
             <label className="block text-xs font-semibold text-gray-300 mb-1">
-              Message / Specific Requirements <span className="text-emerald-400">*</span>
+              Message / Specific Requirements <span className="text-amber-400">*</span>
             </label>
             <textarea
               rows={4}
@@ -242,7 +242,7 @@ export function InquiryForm({ propertyId, propertyTitle }: InquiryFormProps) {
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               className={`w-full rounded-lg bg-[#17243A] border px-3.5 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none ${
-                fieldErrors.message ? 'border-red-500' : 'border-white/10 focus:border-emerald-500'
+                fieldErrors.message ? 'border-red-500' : 'border-white/10 focus:border-amber-500'
               }`}
             />
             {fieldErrors.message && (

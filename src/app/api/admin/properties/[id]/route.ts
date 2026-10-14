@@ -1,4 +1,5 @@
 import { NextRequest } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { ZodError } from 'zod';
 import connectToDatabase from '@/lib/db/mongodb';
 import { requireAdmin } from '@/lib/requireAdmin';
@@ -69,6 +70,13 @@ export async function PATCH(
     property.set(buildPropertyPayload(input));
     await property.save();
 
+    // Revalidate public cache immediately
+    revalidatePath('/properties');
+    revalidatePath('/');
+    if (property.slug) {
+      revalidatePath(`/properties/${property.slug}`);
+    }
+
     return successResponse(mapAdminProperty(property), { message: 'Property updated successfully' });
   } catch (error) {
     if (error instanceof ZodError) return validationErrorResponse(error);
@@ -91,8 +99,16 @@ export async function DELETE(
     const property = await Property.findById(id).exec();
     if (!property) return errorResponse('NOT_FOUND', 'Property not found', 404);
 
+    const slug = property.slug;
     await deleteCloudinaryImages(property.imagePublicIds || []);
     await property.deleteOne();
+
+    // Revalidate public cache immediately
+    revalidatePath('/properties');
+    revalidatePath('/');
+    if (slug) {
+      revalidatePath(`/properties/${slug}`);
+    }
 
     return successResponse({ deleted: true });
   } catch (error) {

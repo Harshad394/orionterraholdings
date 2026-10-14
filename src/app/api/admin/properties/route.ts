@@ -1,4 +1,5 @@
 import { NextRequest } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { ZodError } from 'zod';
 import connectToDatabase from '@/lib/db/mongodb';
 import { requireAdmin } from '@/lib/requireAdmin';
@@ -89,6 +90,11 @@ export async function POST(request: NextRequest) {
       ...buildPropertyPayload(input),
       slug,
     });
+
+    // Revalidate public property pages cache immediately
+    revalidatePath('/properties');
+    revalidatePath('/');
+    revalidatePath(`/properties/${slug}`);
 
     return successResponse(mapAdminProperty(property), {
       status: 201,

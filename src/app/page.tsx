@@ -25,8 +25,8 @@ export default function HomePage() {
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 text-center space-y-8">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 text-xs font-semibold text-emerald-400 backdrop-blur-md">
-            <Compass className="h-3.5 w-3.5" />
+          <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-1.5 text-xs font-semibold text-amber-400 backdrop-blur-md shadow-[0_0_15px_rgba(245,158,11,0.15)]">
+            <Compass className="h-3.5 w-3.5 text-amber-400" />
             <span>Centralized Land Discovery & Deal Facilitation</span>
           </div>
 
@@ -56,8 +56,8 @@ export default function HomePage() {
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-20 lg:space-y-28">
         {/* 2. TRUST / INTRO SECTION */}
-        <section className="glass-panel rounded-3xl p-8 sm:p-12 border border-white/10 text-center max-w-4xl mx-auto space-y-4">
-          <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">
+        <section className="glass-panel rounded-3xl p-8 sm:p-12 border border-amber-500/20 text-center max-w-4xl mx-auto space-y-4 shadow-[0_0_30px_rgba(245,158,11,0.05)]">
+          <span className="text-xs font-bold uppercase tracking-widest text-amber-400">
             A Smarter Way to Discover Land
           </span>
           <h2 className="text-2xl sm:text-3xl font-bold text-white">
@@ -72,7 +72,7 @@ export default function HomePage() {
         <section className="space-y-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/10 pb-6">
             <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">
+              <span className="text-xs font-bold uppercase tracking-widest text-amber-400">
                 Curated Listings
               </span>
               <h2 className="text-3xl font-bold tracking-tight text-white mt-1">
@@ -84,7 +84,7 @@ export default function HomePage() {
             </div>
             <Link
               href="/properties"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-amber-400 hover:text-amber-300 transition-colors"
             >
               <span>Explore All Properties</span>
               <ArrowRight className="h-4 w-4" />
@@ -101,7 +101,7 @@ export default function HomePage() {
         {/* 4. OPPORTUNITIES / SOLUTIONS */}
         <section className="space-y-8">
           <div className="text-center max-w-2xl mx-auto space-y-2">
-            <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">
+            <span className="text-xs font-bold uppercase tracking-widest text-amber-400">
               Solutions & Use Cases
             </span>
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">

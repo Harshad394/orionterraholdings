@@ -10,13 +10,13 @@ import {
   MessageSquare,
   TrendingUp,
   Eye,
-  Clock,
   CheckCircle2,
   AlertCircle,
   User,
   Phone,
   Mail,
   Calendar,
+  Clock,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -26,6 +26,7 @@ interface StatCard {
   icon: React.ElementType;
   color: 'emerald' | 'blue' | 'amber' | 'rose';
   description?: string;
+  href?: string;
 }
 
 function formatDate(date: Date | string) {
@@ -100,50 +101,54 @@ export default async function AdminDashboardPage() {
       label: 'Total Properties',
       value: totalProperties,
       icon: MapPin,
-      color: 'emerald',
+      color: 'amber',
       description: `${publishedProperties} published · ${draftProperties} draft`,
+      href: '/admin/properties',
     },
     {
       label: 'Published',
       value: publishedProperties,
       icon: Eye,
-      color: 'blue',
-      description: 'Live on public site',
+      color: 'emerald',
+      description: 'Live on public website',
+      href: '/admin/properties',
     },
     {
       label: 'Pending Submissions',
       value: pendingSubmissions,
       icon: FileText,
       color: 'amber',
-      description: `${totalSubmissions} total submissions`,
+      description: `${totalSubmissions} total seller submissions`,
+      href: '/admin/submissions',
     },
     {
       label: 'New Inquiries',
       value: newInquiries,
       icon: MessageSquare,
-      color: 'rose',
-      description: `${totalInquiries} total inquiries`,
+      color: 'blue',
+      description: `${totalInquiries} total buyer inquiries`,
+      href: '/admin/inquiries',
     },
   ];
 
   const colorMap = {
     emerald: {
-      card: 'border-emerald-500/20 bg-emerald-500/5',
+      card: 'border-emerald-500/20 bg-emerald-500/5 hover:border-emerald-500/40',
       icon: 'bg-emerald-500/15 text-emerald-400',
       value: 'text-emerald-400',
     },
     blue: {
-      card: 'border-blue-500/20 bg-blue-500/5',
+      card: 'border-blue-500/20 bg-blue-500/5 hover:border-blue-500/40',
       icon: 'bg-blue-500/15 text-blue-400',
       value: 'text-blue-400',
     },
     amber: {
-      card: 'border-amber-500/20 bg-amber-500/5',
+      card: 'border-amber-500/20 bg-amber-500/5 hover:border-amber-500/40',
       icon: 'bg-amber-500/15 text-amber-400',
       value: 'text-amber-400',
     },
     rose: {
-      card: 'border-rose-500/20 bg-rose-500/5',
+      card: 'border-rose-500/20 bg-rose-500/5 hover:border-rose-500/40',
       icon: 'bg-rose-500/15 text-rose-400',
       value: 'text-rose-400',
     },
@@ -154,15 +159,15 @@ export default async function AdminDashboardPage() {
       {/* Page Header */}
       <div className="flex items-start justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-white">Dashboard</h1>
+          <h1 className="text-2xl font-bold text-white">Admin Dashboard</h1>
           <p className="text-sm text-gray-400 mt-1">
             Welcome back,{' '}
-            <span className="text-emerald-400 font-medium">{session?.email}</span>
+            <span className="text-amber-400 font-medium">{session?.email}</span>
           </p>
         </div>
         <div className="flex items-center gap-2 text-xs text-gray-500">
-          <TrendingUp className="w-3.5 h-3.5" />
-          <span>Live data</span>
+          <TrendingUp className="w-3.5 h-3.5 text-amber-400" />
+          <span>Real-time MongoDB Atlas</span>
         </div>
       </div>
 
@@ -171,8 +176,9 @@ export default async function AdminDashboardPage() {
         {statCards.map((card) => {
           const colors = colorMap[card.color];
           return (
-            <div
+            <Link
               key={card.label}
+              href={card.href || '#'}
               className={cn(
                 'rounded-xl border p-5 flex flex-col gap-4 transition-all duration-200 hover:scale-[1.02]',
                 colors.card
@@ -190,7 +196,7 @@ export default async function AdminDashboardPage() {
                   <p className="text-xs text-gray-500 mt-1">{card.description}</p>
                 )}
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>
@@ -198,14 +204,14 @@ export default async function AdminDashboardPage() {
       {/* Recent Activity Grid */}
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
         {/* Recent Submissions */}
-        <div className="bg-[#111C2E] border border-white/10 rounded-xl overflow-hidden">
+        <div className="bg-[#111C2E] border border-white/10 rounded-xl overflow-hidden shadow-xl">
           <div className="px-6 py-4 border-b border-white/10 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <FileText className="w-4 h-4 text-amber-400" />
-              <h2 className="text-sm font-semibold text-white">Recent Submissions</h2>
+              <h2 className="text-sm font-semibold text-white">Recent Seller Submissions</h2>
             </div>
             {pendingSubmissions > 0 && (
-              <span className="flex items-center gap-1.5 text-xs text-amber-400">
+              <span className="flex items-center gap-1.5 text-xs text-amber-400 font-semibold bg-amber-500/10 border border-amber-500/20 px-2.5 py-0.5 rounded-full">
                 <AlertCircle className="w-3.5 h-3.5" />
                 {pendingSubmissions} pending
               </span>
@@ -215,7 +221,7 @@ export default async function AdminDashboardPage() {
           <div className="divide-y divide-white/5">
             {recentSubmissions.length === 0 ? (
               <div className="px-6 py-8 text-center text-sm text-gray-500">
-                No submissions yet
+                No seller submissions recorded yet
               </div>
             ) : (
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -224,20 +230,20 @@ export default async function AdminDashboardPage() {
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
-                        <User className="w-3.5 h-3.5 text-gray-500 flex-shrink-0" />
+                        <User className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
                         <p className="text-sm font-medium text-white truncate">{sub.sellerName}</p>
                       </div>
-                      <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-gray-500">
+                      <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-gray-400">
                         <span className="flex items-center gap-1">
-                          <MapPin className="w-3 h-3" />
+                          <MapPin className="w-3 h-3 text-gray-500" />
                           {sub.city}, {sub.state}
                         </span>
                         <span className="flex items-center gap-1">
-                          <Phone className="w-3 h-3" />
+                          <Phone className="w-3 h-3 text-gray-500" />
                           {sub.phone}
                         </span>
                       </div>
-                      <div className="flex items-center gap-1 mt-1 text-xs text-gray-600">
+                      <div className="flex items-center gap-1 mt-1 text-xs text-gray-500">
                         <Calendar className="w-3 h-3" />
                         {formatDate(sub.createdAt)}
                       </div>
@@ -249,24 +255,23 @@ export default async function AdminDashboardPage() {
             )}
           </div>
 
-          {totalSubmissions > 5 && (
-            <div className="px-6 py-3 border-t border-white/5">
-              <Link href="/admin/submissions" className="text-xs text-emerald-400 hover:text-emerald-300 transition-colors">
-                View all {totalSubmissions} submissions →
-              </Link>
-            </div>
-          )}
+          <div className="px-6 py-3 border-t border-white/5 bg-[#17243A]/30">
+            <Link href="/admin/submissions" className="text-xs font-semibold text-amber-400 hover:text-amber-300 transition-colors inline-flex items-center gap-1">
+              <span>View all {totalSubmissions} submissions</span>
+              <span>→</span>
+            </Link>
+          </div>
         </div>
 
         {/* Recent Inquiries */}
-        <div className="bg-[#111C2E] border border-white/10 rounded-xl overflow-hidden">
+        <div className="bg-[#111C2E] border border-white/10 rounded-xl overflow-hidden shadow-xl">
           <div className="px-6 py-4 border-b border-white/10 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <MessageSquare className="w-4 h-4 text-blue-400" />
-              <h2 className="text-sm font-semibold text-white">Recent Inquiries</h2>
+              <MessageSquare className="w-4 h-4 text-amber-400" />
+              <h2 className="text-sm font-semibold text-white">Recent Buyer Inquiries</h2>
             </div>
             {newInquiries > 0 && (
-              <span className="flex items-center gap-1.5 text-xs text-blue-400">
+              <span className="flex items-center gap-1.5 text-xs text-emerald-400 font-semibold bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded-full">
                 <CheckCircle2 className="w-3.5 h-3.5" />
                 {newInquiries} new
               </span>
@@ -276,7 +281,7 @@ export default async function AdminDashboardPage() {
           <div className="divide-y divide-white/5">
             {recentInquiries.length === 0 ? (
               <div className="px-6 py-8 text-center text-sm text-gray-500">
-                No inquiries yet
+                No buyer inquiries recorded yet
               </div>
             ) : (
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -285,25 +290,27 @@ export default async function AdminDashboardPage() {
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
-                        <User className="w-3.5 h-3.5 text-gray-500 flex-shrink-0" />
+                        <User className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
                         <p className="text-sm font-medium text-white truncate">{inq.name}</p>
                       </div>
                       {inq.propertyId && (
-                        <p className="text-xs text-emerald-400/80 truncate mb-1">
+                        <p className="text-xs text-amber-400/90 truncate mb-1 font-semibold">
                           {inq.propertyId.title ?? inq.propertyId.propertyId}
                         </p>
                       )}
-                      <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-gray-500">
+                      <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-gray-400">
                         <span className="flex items-center gap-1">
-                          <Phone className="w-3 h-3" />
+                          <Phone className="w-3 h-3 text-gray-500" />
                           {inq.phone}
                         </span>
-                        <span className="flex items-center gap-1 truncate max-w-[140px]">
-                          <Mail className="w-3 h-3" />
-                          {inq.email}
-                        </span>
+                        {inq.email && (
+                          <span className="flex items-center gap-1 truncate max-w-[140px]">
+                            <Mail className="w-3 h-3 text-gray-500" />
+                            {inq.email}
+                          </span>
+                        )}
                       </div>
-                      <div className="flex items-center gap-1 mt-1 text-xs text-gray-600">
+                      <div className="flex items-center gap-1 mt-1 text-xs text-gray-500">
                         <Clock className="w-3 h-3" />
                         {formatDate(inq.createdAt)}
                       </div>
@@ -315,13 +322,12 @@ export default async function AdminDashboardPage() {
             )}
           </div>
 
-          {totalInquiries > 5 && (
-            <div className="px-6 py-3 border-t border-white/5">
-              <a href="/admin/inquiries" className="text-xs text-emerald-400 hover:text-emerald-300 transition-colors">
-                View all {totalInquiries} inquiries →
-              </a>
-            </div>
-          )}
+          <div className="px-6 py-3 border-t border-white/5 bg-[#17243A]/30">
+            <Link href="/admin/inquiries" className="text-xs font-semibold text-amber-400 hover:text-amber-300 transition-colors inline-flex items-center gap-1">
+              <span>View all {totalInquiries} inquiries</span>
+              <span>→</span>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

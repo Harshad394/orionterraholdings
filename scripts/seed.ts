@@ -1,3 +1,25 @@
+import fs from 'fs';
+import path from 'path';
+
+// Parse .env.local manually if it exists so CLI seeding receives all environment variables
+const envPath = path.resolve(process.cwd(), '.env.local');
+if (fs.existsSync(envPath)) {
+  const envConfig = fs.readFileSync(envPath, 'utf-8');
+  for (const line of envConfig.split('\n')) {
+    const trimmed = line.trim();
+    if (trimmed && !trimmed.startsWith('#')) {
+      const idx = trimmed.indexOf('=');
+      if (idx > 0) {
+        const key = trimmed.substring(0, idx).trim();
+        const value = trimmed.substring(idx + 1).trim();
+        if (!process.env[key]) {
+          process.env[key] = value;
+        }
+      }
+    }
+  }
+}
+
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 import connectToDatabase from '../src/lib/db/mongodb';
@@ -11,6 +33,7 @@ async function seedDatabase() {
   console.log('🌱 Starting Orion Terra Database Seeding...');
 
   try {
+    console.log(`Connecting to MongoDB at ${process.env.MONGODB_URI ? 'configured URI' : 'default localhost'}...`);
     await connectToDatabase();
 
     // 1. Seed Admin Account

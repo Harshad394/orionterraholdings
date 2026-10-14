@@ -102,7 +102,6 @@ export default async function SubmissionDetailPage({
                 {submission.images.map((image, index) => (
                   <div key={`${image}-${index}`} className="overflow-hidden rounded-lg border border-white/10 bg-[#0A1120]">
                     <div className="aspect-[4/3]">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={image} alt="" className="h-full w-full object-cover" />
                     </div>
                   </div>

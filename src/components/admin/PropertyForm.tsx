@@ -2,7 +2,7 @@
 
 import { FormEvent, useMemo, useRef, useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowDown, ArrowLeft, ArrowUp, ImagePlus, Save, Trash2 } from 'lucide-react';
+import { ArrowDown, ArrowLeft, ArrowUp, ImagePlus, Link as LinkIcon, Plus, Save, Trash2 } from 'lucide-react';
 import {
   LAND_AREA_UNITS,
   OPPORTUNITY_TYPES,
@@ -49,8 +49,8 @@ interface PropertyFormProps {
 }
 
 const inputClass =
-  'w-full rounded-lg border border-white/10 bg-[#0A1120] px-3 py-2 text-sm text-white outline-none transition focus:border-emerald-500/60';
-const labelClass = 'mb-1.5 block text-xs font-medium uppercase tracking-wide text-gray-500';
+  'w-full rounded-lg border border-white/10 bg-[#0A1120] px-3 py-2 text-sm text-white outline-none transition focus:border-amber-500/60';
+const labelClass = 'mb-1.5 block text-xs font-medium uppercase tracking-wide text-gray-400';
 
 function emptyValue(): PropertyFormValue {
   return {
@@ -84,6 +84,7 @@ export function PropertyForm({ mode, initialValue, backHref = '/admin/properties
   const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [urlInput, setUrlInput] = useState('');
 
   const initial = useMemo<PropertyFormValue>(() => {
     const base = emptyValue();
@@ -137,13 +138,29 @@ export function PropertyForm({ mode, initialValue, backHref = '/admin/properties
         ...current,
         images: [...current.images, ...json.data],
       }));
-      setSuccess('Images uploaded. Save the property to keep these changes.');
+      setSuccess('Images uploaded successfully. Save the property to apply changes.');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Image upload failed');
     } finally {
       setIsUploading(false);
       if (fileRef.current) fileRef.current.value = '';
     }
+  };
+
+  const addImageUrl = () => {
+    const trimmed = urlInput.trim();
+    if (!trimmed) return;
+    if (!trimmed.startsWith('http://') && !trimmed.startsWith('https://')) {
+      setError('Please enter a valid HTTP or HTTPS image URL.');
+      return;
+    }
+
+    setForm((current) => ({
+      ...current,
+      images: [...current.images, { url: trimmed, publicId: '' }],
+    }));
+    setUrlInput('');
+    setSuccess('Image URL added. Save the property to keep changes.');
   };
 
   const removeImage = async (index: number) => {
@@ -232,7 +249,7 @@ export function PropertyForm({ mode, initialValue, backHref = '/admin/properties
         <button
           type="button"
           onClick={() => router.push(backHref)}
-          className="inline-flex w-fit items-center gap-2 rounded-lg border border-white/10 px-3 py-2 text-sm text-gray-300 hover:bg-white/5"
+          className="inline-flex w-fit items-center gap-2 rounded-lg border border-white/10 px-3.5 py-2 text-sm text-gray-300 hover:bg-white/5"
         >
           <ArrowLeft className="h-4 w-4" />
           Back
@@ -240,85 +257,86 @@ export function PropertyForm({ mode, initialValue, backHref = '/admin/properties
         <button
           type="submit"
           disabled={isPending || isUploading}
-          className="inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-500 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-400 disabled:opacity-50"
+          className="btn-primary py-2.5 px-6 text-sm disabled:opacity-50"
         >
           <Save className="h-4 w-4" />
-          {isPending ? 'Saving...' : 'Save Property'}
+          <span>{isPending ? 'Saving...' : 'Save Property'}</span>
         </button>
       </div>
 
       {(error || success) && (
         <div
           className={cn(
-            'rounded-lg border px-4 py-3 text-sm',
-            error ? 'border-red-500/30 bg-red-500/10 text-red-200' : 'border-emerald-500/30 bg-emerald-500/10 text-emerald-200'
+            'rounded-xl border px-4 py-3 text-sm font-medium',
+            error ? 'border-red-500/30 bg-red-500/10 text-red-300' : 'border-amber-500/30 bg-amber-500/10 text-amber-300'
           )}
         >
           {error || success}
         </div>
       )}
 
-      <section className="rounded-xl border border-white/10 bg-[#111C2E] p-5">
-        <h2 className="mb-5 text-sm font-semibold text-white">Core Details</h2>
+      <section className="rounded-xl border border-white/10 bg-[#111C2E] p-5 space-y-4 shadow-xl">
+        <h2 className="text-base font-bold text-white border-b border-white/10 pb-3">Core Property Information</h2>
         <div className="grid gap-4 md:grid-cols-2">
           <div>
-            <label className={labelClass}>Title</label>
-            <input className={inputClass} value={form.title} onChange={(e) => setField('title', e.target.value)} required />
+            <label className={labelClass}>Property Title *</label>
+            <input className={inputClass} value={form.title} onChange={(e) => setField('title', e.target.value)} required placeholder="e.g. 20 Acre Prime Highway Commercial Land" />
           </div>
           <div>
-            <label className={labelClass}>Property ID</label>
-            <input className={inputClass} value={form.propertyId} onChange={(e) => setField('propertyId', e.target.value)} required />
+            <label className={labelClass}>Property ID *</label>
+            <input className={inputClass} value={form.propertyId} onChange={(e) => setField('propertyId', e.target.value)} required placeholder="e.g. OT-MH-010" />
           </div>
           <div className="md:col-span-2">
-            <label className={labelClass}>Description</label>
+            <label className={labelClass}>Description *</label>
             <textarea
               className={cn(inputClass, 'min-h-32 resize-y')}
               value={form.description}
               onChange={(e) => setField('description', e.target.value)}
               required
+              placeholder="Detailed property description, road access, frontage, zoning..."
             />
           </div>
         </div>
       </section>
 
-      <section className="rounded-xl border border-white/10 bg-[#111C2E] p-5">
-        <h2 className="mb-5 text-sm font-semibold text-white">Location</h2>
+      <section className="rounded-xl border border-white/10 bg-[#111C2E] p-5 space-y-4 shadow-xl">
+        <h2 className="text-base font-bold text-white border-b border-white/10 pb-3">Location Details</h2>
         <div className="grid gap-4 md:grid-cols-2">
           <div className="md:col-span-2">
-            <label className={labelClass}>Address</label>
-            <input className={inputClass} value={form.location.address} onChange={(e) => setLocationField('address', e.target.value)} />
+            <label className={labelClass}>Street Address / Area</label>
+            <input className={inputClass} value={form.location.address} onChange={(e) => setLocationField('address', e.target.value)} placeholder="e.g. Sector 12, Ghodbunder Road" />
           </div>
           <div>
-            <label className={labelClass}>City</label>
-            <input className={inputClass} value={form.location.city} onChange={(e) => setLocationField('city', e.target.value)} required />
+            <label className={labelClass}>City *</label>
+            <input className={inputClass} value={form.location.city} onChange={(e) => setLocationField('city', e.target.value)} required placeholder="e.g. Thane" />
           </div>
           <div>
-            <label className={labelClass}>State</label>
-            <input className={inputClass} value={form.location.state} onChange={(e) => setLocationField('state', e.target.value)} required />
+            <label className={labelClass}>State *</label>
+            <input className={inputClass} value={form.location.state} onChange={(e) => setLocationField('state', e.target.value)} required placeholder="e.g. Maharashtra" />
           </div>
           <div>
-            <label className={labelClass}>Country</label>
+            <label className={labelClass}>Country *</label>
             <input className={inputClass} value={form.location.country} onChange={(e) => setLocationField('country', e.target.value)} required />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label className={labelClass}>Latitude</label>
-              <input className={inputClass} value={form.location.latitude} onChange={(e) => setLocationField('latitude', e.target.value)} inputMode="decimal" />
+              <input className={inputClass} value={form.location.latitude} onChange={(e) => setLocationField('latitude', e.target.value)} inputMode="decimal" placeholder="19.2183" />
             </div>
             <div>
               <label className={labelClass}>Longitude</label>
-              <input className={inputClass} value={form.location.longitude} onChange={(e) => setLocationField('longitude', e.target.value)} inputMode="decimal" />
+              <input className={inputClass} value={form.location.longitude} onChange={(e) => setLocationField('longitude', e.target.value)} inputMode="decimal" placeholder="72.9781" />
             </div>
           </div>
         </div>
       </section>
 
-      <section className="rounded-xl border border-white/10 bg-[#111C2E] p-5">
-        <h2 className="mb-5 text-sm font-semibold text-white">Listing Attributes</h2>
+      <section className="rounded-xl border border-white/10 bg-[#111C2E] p-5 space-y-4 shadow-xl">
+        <h2 className="text-base font-bold text-white border-b border-white/10 pb-3">Listing Attributes & Pricing</h2>
         <div className="grid gap-4 md:grid-cols-3">
           <div>
-            <label className={labelClass}>Land Area</label>
-            <input className={inputClass} value={form.landArea} onChange={(e) => setField('landArea', e.target.value)} inputMode="decimal" required />
+            <label className={labelClass}>Land Area *</label>
+            <input className={inputClass} value={form.landArea} onChange={(e) => setField('landArea', e.target.value)} inputMode="decimal" required placeholder="e.g. 45000" />
           </div>
           <div>
             <label className={labelClass}>Area Unit</label>
@@ -339,8 +357,8 @@ export function PropertyForm({ mode, initialValue, backHref = '/admin/properties
             </select>
           </div>
           <div>
-            <label className={labelClass}>Price</label>
-            <input className={inputClass} value={form.price} onChange={(e) => setField('price', e.target.value)} inputMode="numeric" />
+            <label className={labelClass}>Price (₹)</label>
+            <input className={inputClass} value={form.price} onChange={(e) => setField('price', e.target.value)} inputMode="numeric" placeholder="e.g. 50000000" />
           </div>
           <div>
             <label className={labelClass}>Price Visibility</label>
@@ -349,36 +367,42 @@ export function PropertyForm({ mode, initialValue, backHref = '/admin/properties
             </select>
           </div>
           <div>
-            <label className={labelClass}>Status</label>
-            <select className={inputClass} value={form.status} onChange={(e) => setField('status', e.target.value)}>
-              {PROPERTY_STATUS.map((item) => <option key={item}>{item}</option>)}
+            <label className={labelClass}>Listing Status *</label>
+            <select className={cn(inputClass, form.status === 'PUBLISHED' ? 'border-emerald-500/60 text-emerald-300' : 'border-amber-500/60 text-amber-300')} value={form.status} onChange={(e) => setField('status', e.target.value)}>
+              {PROPERTY_STATUS.map((item) => <option key={item} value={item}>{item}</option>)}
             </select>
+            <p className="mt-1 text-[11px] text-gray-400">
+              {form.status === 'PUBLISHED' ? '✅ Visible on public /properties website.' : '⚠️ Set to PUBLISHED to show on public website.'}
+            </p>
           </div>
-          <label className="flex items-center gap-2 rounded-lg border border-white/10 bg-[#0A1120] px-3 py-2 text-sm text-gray-300">
-            <input
-              type="checkbox"
-              checked={form.featured}
-              onChange={(e) => setField('featured', e.target.checked)}
-              className="h-4 w-4 accent-emerald-500"
-            />
-            Featured
-          </label>
+          <div className="flex items-center pt-5">
+            <label className="flex items-center gap-3 cursor-pointer rounded-lg border border-white/10 bg-[#0A1120] px-4 py-2.5 text-sm text-gray-300 w-full">
+              <input
+                type="checkbox"
+                checked={form.featured}
+                onChange={(e) => setField('featured', e.target.checked)}
+                className="h-4 w-4 accent-amber-500 rounded"
+              />
+              <span className="font-semibold text-white">Mark as Featured Opportunity</span>
+            </label>
+          </div>
         </div>
       </section>
 
-      <section className="rounded-xl border border-white/10 bg-[#111C2E] p-5">
-        <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      {/* Property Images Section */}
+      <section className="rounded-xl border border-white/10 bg-[#111C2E] p-5 space-y-4 shadow-xl">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between border-b border-white/10 pb-3">
           <div>
-            <h2 className="text-sm font-semibold text-white">Images</h2>
-            <p className="mt-1 text-xs text-gray-500">The first image is used as the cover image.</p>
+            <h2 className="text-base font-bold text-white">Property Images</h2>
+            <p className="mt-0.5 text-xs text-gray-400">The first image will be used as the main cover photo.</p>
           </div>
-          <label className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3 py-2 text-sm text-emerald-300 hover:bg-emerald-500/15">
+          <label className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-amber-500/40 bg-amber-500/10 px-4 py-2 text-xs font-bold text-amber-400 hover:bg-amber-500/20 transition-all shadow-[0_0_15px_rgba(245,158,11,0.1)]">
             <ImagePlus className="h-4 w-4" />
-            {isUploading ? 'Uploading...' : 'Upload Images'}
+            <span>{isUploading ? 'Uploading to Cloudinary...' : 'Upload Image Files'}</span>
             <input
               ref={fileRef}
               type="file"
-              accept="image/jpeg,image/png,image/webp"
+              accept="image/jpeg,image/png,image/webp,image/gif,image/avif"
               multiple
               className="hidden"
               onChange={(event) => uploadImages(event.target.files)}
@@ -387,20 +411,48 @@ export function PropertyForm({ mode, initialValue, backHref = '/admin/properties
           </label>
         </div>
 
+        {/* Option: Add Direct Image URL */}
+        <div className="flex flex-col sm:flex-row gap-2 bg-[#0A1120] p-3 rounded-lg border border-white/5">
+          <div className="relative flex-1">
+            <LinkIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+            <input
+              type="url"
+              value={urlInput}
+              onChange={(e) => setUrlInput(e.target.value)}
+              placeholder="Or paste direct image URL (https://images.unsplash.com/...)"
+              className="w-full pl-9 pr-3 py-1.5 text-xs bg-transparent text-white placeholder-gray-500 focus:outline-none"
+            />
+          </div>
+          <button
+            type="button"
+            onClick={addImageUrl}
+            className="btn-secondary text-xs py-1.5 px-3 shrink-0"
+          >
+            <Plus className="w-3.5 h-3.5 text-amber-400" />
+            <span>Add URL</span>
+          </button>
+        </div>
+
         {form.images.length === 0 ? (
-          <div className="rounded-lg border border-dashed border-white/10 px-4 py-10 text-center text-sm text-gray-500">
-            No images uploaded.
+          <div className="rounded-lg border border-dashed border-white/10 px-4 py-10 text-center text-xs text-gray-500">
+            No images uploaded yet. Upload images above or add a direct image URL.
           </div>
         ) : (
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4 pt-2">
             {form.images.map((image, index) => (
-              <div key={`${image.url}-${index}`} className="overflow-hidden rounded-lg border border-white/10 bg-[#0A1120]">
-                <div className="aspect-[4/3] bg-black/20">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
+              <div key={`${image.url}-${index}`} className="overflow-hidden rounded-lg border border-white/10 bg-[#0A1120] group relative">
+                <div className="aspect-[4/3] bg-black/20 relative">
                   <img src={image.url} alt="" className="h-full w-full object-cover" />
+                  {index === 0 && (
+                    <span className="absolute top-2 left-2 px-2 py-0.5 text-[10px] font-bold bg-amber-500 text-black rounded shadow">
+                      Cover
+                    </span>
+                  )}
                 </div>
-                <div className="flex items-center justify-between gap-2 p-2">
-                  <span className="text-xs text-gray-500">{index === 0 ? 'Cover' : `Image ${index + 1}`}</span>
+                <div className="flex items-center justify-between gap-2 p-2 bg-[#111C2E]">
+                  <span className="text-xs font-semibold text-gray-400">
+                    {index === 0 ? 'Primary' : `Photo ${index + 1}`}
+                  </span>
                   <div className="flex items-center gap-1">
                     <button type="button" onClick={() => moveImage(index, -1)} className="rounded p-1.5 text-gray-400 hover:bg-white/5 hover:text-white" title="Move up">
                       <ArrowUp className="h-3.5 w-3.5" />
@@ -408,7 +460,7 @@ export function PropertyForm({ mode, initialValue, backHref = '/admin/properties
                     <button type="button" onClick={() => moveImage(index, 1)} className="rounded p-1.5 text-gray-400 hover:bg-white/5 hover:text-white" title="Move down">
                       <ArrowDown className="h-3.5 w-3.5" />
                     </button>
-                    <button type="button" onClick={() => removeImage(index)} className="rounded p-1.5 text-gray-400 hover:bg-red-500/10 hover:text-red-300" title="Remove image">
+                    <button type="button" onClick={() => removeImage(index)} className="rounded p-1.5 text-gray-400 hover:bg-red-500/10 hover:text-red-400" title="Remove image">
                       <Trash2 className="h-3.5 w-3.5" />
                     </button>
                   </div>

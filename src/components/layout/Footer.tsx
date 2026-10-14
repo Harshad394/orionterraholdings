@@ -10,10 +10,10 @@ export function Footer() {
           {/* Brand Col */}
           <div className="lg:col-span-2 space-y-4">
             <Link href="/" className="flex items-center gap-3 group">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.15)]">
                 <span className="font-bold text-xl gold-gradient-text">OT</span>
               </div>
-              <span className="text-xl font-bold tracking-tight text-white">ORION TERRA</span>
+              <span className="text-xl font-bold tracking-tight text-white group-hover:text-amber-400 transition-colors">ORION TERRA</span>
             </Link>
             <p className="text-sm leading-relaxed text-gray-400 max-w-sm">
               {siteConfig.description}
@@ -23,7 +23,7 @@ export function Footer() {
                 href={siteConfig.links.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20 transition-all"
+                className="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 hover:bg-amber-500/20 transition-all shadow-[0_0_10px_rgba(245,158,11,0.1)]"
               >
                 <MessageSquare className="w-3.5 h-3.5" />
                 <span>WhatsApp Us</span>
@@ -43,22 +43,22 @@ export function Footer() {
             <h3 className="text-sm font-semibold text-white uppercase tracking-wider">Navigation</h3>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <Link href="/" className="hover:text-emerald-400 transition-colors">Home</Link>
+                <Link href="/" className="hover:text-amber-400 transition-colors">Home</Link>
               </li>
               <li>
-                <Link href="/properties" className="hover:text-emerald-400 transition-colors">Browse Properties</Link>
+                <Link href="/properties" className="hover:text-amber-400 transition-colors">Browse Properties</Link>
               </li>
               <li>
-                <Link href="/sell-your-land" className="hover:text-emerald-400 transition-colors">Sell Your Land</Link>
+                <Link href="/sell-your-land" className="hover:text-amber-400 transition-colors">Sell Your Land</Link>
               </li>
               <li>
-                <Link href="/solutions" className="hover:text-emerald-400 transition-colors">Solutions & Opportunities</Link>
+                <Link href="/solutions" className="hover:text-amber-400 transition-colors">Solutions & Opportunities</Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-emerald-400 transition-colors">About Us</Link>
+                <Link href="/about" className="hover:text-amber-400 transition-colors">About Us</Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-emerald-400 transition-colors">Contact Us</Link>
+                <Link href="/contact" className="hover:text-amber-400 transition-colors">Contact Us</Link>
               </li>
             </ul>
           </div>
@@ -68,16 +68,16 @@ export function Footer() {
             <h3 className="text-sm font-semibold text-white uppercase tracking-wider">Solutions</h3>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <Link href="/solutions#acquisition" className="hover:text-emerald-400 transition-colors">Land Acquisition</Link>
+                <Link href="/solutions#acquisition" className="hover:text-amber-400 transition-colors">Land Acquisition</Link>
               </li>
               <li>
-                <Link href="/solutions#redevelopment" className="hover:text-emerald-400 transition-colors">Redevelopment</Link>
+                <Link href="/solutions#redevelopment" className="hover:text-amber-400 transition-colors">Redevelopment</Link>
               </li>
               <li>
-                <Link href="/solutions#joint-ventures" className="hover:text-emerald-400 transition-colors">Joint Ventures</Link>
+                <Link href="/solutions#joint-ventures" className="hover:text-amber-400 transition-colors">Joint Ventures</Link>
               </li>
               <li>
-                <Link href="/solutions#investment" className="hover:text-emerald-400 transition-colors">Investment Land</Link>
+                <Link href="/solutions#investment" className="hover:text-amber-400 transition-colors">Investment Land</Link>
               </li>
             </ul>
           </div>
@@ -87,13 +87,13 @@ export function Footer() {
             <h3 className="text-sm font-semibold text-white uppercase tracking-wider">Legal & Compliance</h3>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <Link href="/privacy-policy" className="hover:text-emerald-400 transition-colors">Privacy Policy</Link>
+                <Link href="/privacy-policy" className="hover:text-amber-400 transition-colors">Privacy Policy</Link>
               </li>
               <li>
-                <Link href="/terms" className="hover:text-emerald-400 transition-colors">Terms of Service</Link>
+                <Link href="/terms" className="hover:text-amber-400 transition-colors">Terms of Service</Link>
               </li>
               <li>
-                <Link href="/disclaimer" className="hover:text-emerald-400 transition-colors">Platform Disclaimer</Link>
+                <Link href="/disclaimer" className="hover:text-amber-400 transition-colors">Platform Disclaimer</Link>
               </li>
             </ul>
             <div className="pt-2 text-xs text-gray-500 space-y-1">
@@ -115,7 +115,7 @@ export function Footer() {
           <div className="flex items-center gap-4">
             <Link href="/disclaimer" className="hover:text-gray-400">Offline Deal Facilitation Disclaimer</Link>
             <span>•</span>
-            <Link href="/admin/login" className="hover:text-gray-400">Admin Portal</Link>
+            <Link href="/admin/login" className="hover:text-amber-400 transition-colors">Admin Portal</Link>
           </div>
         </div>
       </div>

@@ -19,7 +19,7 @@ const optionalNumber = z.preprocess((value) => {
 
 export const propertyQuerySchema = z.object({
   page: z.coerce.number().int().positive().optional().default(1),
-  limit: z.coerce.number().int().positive().max(50).optional().default(12),
+  limit: z.coerce.number().int().positive().max(100).optional().default(12),
   search: z.string().optional().default(''),
   city: z.string().optional().default(''),
   state: z.string().optional().default(''),

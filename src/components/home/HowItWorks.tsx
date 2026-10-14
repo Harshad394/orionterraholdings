@@ -38,7 +38,7 @@ export function HowItWorks() {
   return (
     <div className="py-12">
       <div className="text-center max-w-2xl mx-auto mb-12 space-y-3">
-        <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">
+        <span className="text-xs font-bold uppercase tracking-widest text-amber-400">
           Transparent Process
         </span>
         <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
@@ -55,13 +55,13 @@ export function HowItWorks() {
           return (
             <div
               key={step.number}
-              className="glass-card relative flex flex-col p-6 rounded-2xl border border-white/10 bg-[#111C2E] hover:border-emerald-500/40 transition-all duration-300"
+              className="glass-card relative flex flex-col p-6 rounded-2xl border border-white/10 bg-[#111C2E] hover:border-amber-500/40 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_30px_rgba(245,158,11,0.1)]"
             >
               <div className="flex items-center justify-between mb-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/30 shadow-[0_0_15px_rgba(245,158,11,0.1)]">
                   <Icon className="h-6 w-6" />
                 </div>
-                <span className="text-2xl font-black text-gray-700 gold-gradient-text opacity-70">
+                <span className="text-2xl font-black text-gray-700 gold-gradient-text opacity-90">
                   {step.number}
                 </span>
               </div>

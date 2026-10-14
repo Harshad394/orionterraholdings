@@ -6,7 +6,7 @@ export default function AboutPage() {
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 lg:py-16 space-y-16">
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto space-y-4">
-        <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">
+        <span className="text-xs font-bold uppercase tracking-widest text-amber-400">
           About Orion Terra
         </span>
         <h1 className="text-4xl sm:text-5xl font-black text-white tracking-tight">
@@ -20,8 +20,8 @@ export default function AboutPage() {
 
       {/* Core Philosophy Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        <div className="rounded-3xl border border-white/10 bg-[#111C2E] p-8 space-y-6">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+        <div className="rounded-3xl border border-white/10 bg-[#111C2E] p-8 space-y-6 shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20 shadow-[0_0_15px_rgba(245,158,11,0.1)]">
             <Compass className="h-6 w-6" />
           </div>
           <h2 className="text-2xl font-bold text-white">What We Do</h2>
@@ -33,8 +33,8 @@ export default function AboutPage() {
           </p>
         </div>
 
-        <div className="rounded-3xl border border-white/10 bg-[#142033] p-8 space-y-6">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
+        <div className="rounded-3xl border border-amber-500/30 bg-[#142033] p-8 space-y-6 shadow-[0_4px_20px_rgba(245,158,11,0.08)]">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20 shadow-[0_0_15px_rgba(245,158,11,0.1)]">
             <ShieldCheck className="h-6 w-6" />
           </div>
           <h2 className="text-2xl font-bold text-white">Offline Deal Facilitation</h2>
@@ -59,8 +59,8 @@ export default function AboutPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="rounded-2xl border border-white/10 bg-[#111C2E] p-6 space-y-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400">
+          <div className="rounded-2xl border border-white/10 bg-[#111C2E] p-6 space-y-3 shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20">
               <Building2 className="h-5 w-5" />
             </div>
             <h3 className="text-lg font-bold text-white">Curated Catalog</h3>
@@ -69,8 +69,8 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-[#111C2E] p-6 space-y-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400">
+          <div className="rounded-2xl border border-white/10 bg-[#111C2E] p-6 space-y-3 shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20">
               <Users className="h-5 w-5" />
             </div>
             <h3 className="text-lg font-bold text-white">Privacy Protection</h3>
@@ -79,8 +79,8 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-[#111C2E] p-6 space-y-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400">
+          <div className="rounded-2xl border border-white/10 bg-[#111C2E] p-6 space-y-3 shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20">
               <Handshake className="h-5 w-5" />
             </div>
             <h3 className="text-lg font-bold text-white">Human Advisory</h3>
@@ -92,7 +92,7 @@ export default function AboutPage() {
       </div>
 
       {/* CTA */}
-      <div className="rounded-3xl border border-white/10 bg-gradient-to-r from-[#111C2E] to-[#17243A] p-8 sm:p-12 text-center space-y-6">
+      <div className="rounded-3xl border border-amber-500/30 bg-gradient-to-r from-[#111C2E] to-[#17243A] p-8 sm:p-12 text-center space-y-6 shadow-[0_0_40px_rgba(245,158,11,0.08)]">
         <h2 className="text-3xl font-bold text-white">Get Started With Orion Terra</h2>
         <p className="text-sm text-gray-300 max-w-xl mx-auto">
           Whether you want to discover land opportunities or submit your property for redevelopment and sale, we are here to assist.

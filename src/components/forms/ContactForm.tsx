@@ -36,8 +36,8 @@ export function ContactForm() {
       </div>
 
       {submitted ? (
-        <div className="rounded-xl bg-emerald-500/10 border border-emerald-500/30 p-6 text-center space-y-4">
-          <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400">
+        <div className="rounded-xl bg-amber-500/10 border border-amber-500/30 p-6 text-center space-y-4">
+          <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-amber-500/20 text-amber-400">
             <CheckCircle2 className="h-6 w-6" />
           </div>
           <h4 className="text-lg font-bold text-white">Message Received</h4>
@@ -64,7 +64,7 @@ export function ContactForm() {
 
           <div>
             <label className="block text-xs font-semibold text-gray-300 mb-1">
-              Full Name <span className="text-emerald-400">*</span>
+              Full Name <span className="text-amber-400">*</span>
             </label>
             <input
               type="text"
@@ -72,14 +72,14 @@ export function ContactForm() {
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               placeholder="e.g. Anish Mehta"
-              className="w-full rounded-lg bg-[#17243A] border border-white/10 px-3.5 py-2.5 text-sm text-white placeholder-gray-500 focus:border-emerald-500 focus:outline-none"
+              className="w-full rounded-lg bg-[#17243A] border border-white/10 px-3.5 py-2.5 text-sm text-white placeholder-gray-500 focus:border-amber-500 focus:outline-none"
             />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-semibold text-gray-300 mb-1">
-                Phone Number <span className="text-emerald-400">*</span>
+                Phone Number <span className="text-amber-400">*</span>
               </label>
               <input
                 type="tel"
@@ -87,7 +87,7 @@ export function ContactForm() {
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 placeholder="+91 98765 43210"
-                className="w-full rounded-lg bg-[#17243A] border border-white/10 px-3.5 py-2.5 text-sm text-white placeholder-gray-500 focus:border-emerald-500 focus:outline-none"
+                className="w-full rounded-lg bg-[#17243A] border border-white/10 px-3.5 py-2.5 text-sm text-white placeholder-gray-500 focus:border-amber-500 focus:outline-none"
               />
             </div>
 
@@ -98,14 +98,14 @@ export function ContactForm() {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="anish@example.com"
-                className="w-full rounded-lg bg-[#17243A] border border-white/10 px-3.5 py-2.5 text-sm text-white placeholder-gray-500 focus:border-emerald-500 focus:outline-none"
+                className="w-full rounded-lg bg-[#17243A] border border-white/10 px-3.5 py-2.5 text-sm text-white placeholder-gray-500 focus:border-amber-500 focus:outline-none"
               />
             </div>
           </div>
 
           <div>
             <label className="block text-xs font-semibold text-gray-300 mb-1">
-              Message <span className="text-emerald-400">*</span>
+              Message <span className="text-amber-400">*</span>
             </label>
             <textarea
               rows={4}
@@ -113,7 +113,7 @@ export function ContactForm() {
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               placeholder="How can Orion Terra assist you?"
-              className="w-full rounded-lg bg-[#17243A] border border-white/10 px-3.5 py-2.5 text-sm text-white placeholder-gray-500 focus:border-emerald-500 focus:outline-none"
+              className="w-full rounded-lg bg-[#17243A] border border-white/10 px-3.5 py-2.5 text-sm text-white placeholder-gray-500 focus:border-amber-500 focus:outline-none"
             />
           </div>
 

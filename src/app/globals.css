@@ -6,9 +6,9 @@
     --bg-surface: #111C2E;
     --bg-card: #17243A;
     --border-color: rgba(255, 255, 255, 0.08);
-    --primary: #10B981;
-    --primary-hover: #059669;
-    --accent: #D97706;
+    --primary: #F59E0B;
+    --primary-hover: #D97706;
+    --accent: #F59E0B;
     --accent-gold: #F59E0B;
     --text-primary: #F9FAFB;
     --text-secondary: #9CA3AF;
@@ -36,15 +36,15 @@
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #D97706;
 }
 
 /* Glassmorphism & custom utility classes */
 .glass-panel {
-  background: rgba(17, 28, 46, 0.7);
+  background: rgba(17, 28, 46, 0.75);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.15);
 }
 
 .glass-card {
@@ -57,31 +57,31 @@
 
 .glass-card:hover {
   background: rgba(23, 36, 58, 0.85);
-  border-color: rgba(16, 185, 129, 0.3);
+  border-color: rgba(245, 158, 11, 0.35);
   transform: translateY(-3px);
-  box-shadow: 0 12px 30px -10px rgba(16, 185, 129, 0.15);
+  box-shadow: 0 12px 30px -10px rgba(245, 158, 11, 0.2);
 }
 
 .gold-gradient-text {
-  background: linear-gradient(135deg, #FCD34D 0%, #F59E0B 50%, #D97706 100%);
+  background: linear-gradient(135deg, #FFF099 0%, #FBBF24 35%, #F59E0B 70%, #D97706 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .emerald-gradient-text {
-  background: linear-gradient(135deg, #6EE7B7 0%, #10B981 50%, #047857 100%);
+  background: linear-gradient(135deg, #FFF099 0%, #FBBF24 35%, #F59E0B 70%, #D97706 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
   color: #FFFFFF;
   font-weight: 600;
   padding: 0.625rem 1.25rem;
   border-radius: 0.5rem;
   transition: all 0.2s ease-in-out;
-  box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.25);
+  box-shadow: 0 4px 14px 0 rgba(245, 158, 11, 0.3);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -89,15 +89,15 @@
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, #34D399 0%, #10B981 100%);
-  box-shadow: 0 6px 20px 0 rgba(16, 185, 129, 0.35);
+  background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%);
+  box-shadow: 0 6px 20px 0 rgba(245, 158, 11, 0.45);
   transform: translateY(-1px);
 }
 
 .btn-secondary {
   background: rgba(255, 255, 255, 0.05);
   color: #F9FAFB;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.2);
   font-weight: 600;
   padding: 0.625rem 1.25rem;
   border-radius: 0.5rem;
@@ -109,9 +109,9 @@
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.25);
-  color: #FFFFFF;
+  background: rgba(245, 158, 11, 0.1);
+  border-color: rgba(245, 158, 11, 0.4);
+  color: #FBBF24;
 }
 
 .btn-gold {
@@ -121,7 +121,7 @@
   padding: 0.625rem 1.25rem;
   border-radius: 0.5rem;
   transition: all 0.2s ease-in-out;
-  box-shadow: 0 4px 14px 0 rgba(245, 158, 11, 0.25);
+  box-shadow: 0 4px 14px 0 rgba(245, 158, 11, 0.3);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -130,6 +130,6 @@
 
 .btn-gold:hover {
   background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%);
-  box-shadow: 0 6px 20px 0 rgba(245, 158, 11, 0.35);
+  box-shadow: 0 6px 20px 0 rgba(245, 158, 11, 0.45);
   transform: translateY(-1px);
 }

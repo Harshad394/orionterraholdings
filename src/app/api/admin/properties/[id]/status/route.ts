@@ -1,4 +1,5 @@
 import { NextRequest } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { ZodError } from 'zod';
 import connectToDatabase from '@/lib/db/mongodb';
 import { requireAdmin } from '@/lib/requireAdmin';
@@ -40,6 +41,13 @@ export async function PATCH(
 
     property.status = status;
     await property.save();
+
+    // Revalidate public property cache immediately
+    revalidatePath('/properties');
+    revalidatePath('/');
+    if (property.slug) {
+      revalidatePath(`/properties/${property.slug}`);
+    }
 
     return successResponse(mapAdminProperty(property), { message: 'Property status updated' });
   } catch (error) {

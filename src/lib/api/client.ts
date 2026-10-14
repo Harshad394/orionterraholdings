@@ -9,6 +9,40 @@ export interface ApiResponse<T = unknown> {
   };
 }
 
+export async function getApi<T = unknown>(url: string): Promise<ApiResponse<T>> {
+  try {
+    const res = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const json = await res.json();
+
+    if (!res.ok || !json.success) {
+      return {
+        success: false,
+        error: json.error || {
+          code: 'HTTP_ERROR',
+          message: json.message || `Request failed with status ${res.status}`,
+        },
+      };
+    }
+
+    return json;
+  } catch (err: unknown) {
+    console.error(`API Error GET ${url}:`, err);
+    return {
+      success: false,
+      error: {
+        code: 'NETWORK_ERROR',
+        message: 'Unable to connect to the server. Please check your network connection.',
+      },
+    };
+  }
+}
+
 export async function postApi<T = unknown>(url: string, payload: unknown): Promise<ApiResponse<T>> {
   try {
     const res = await fetch(url, {
@@ -38,7 +72,76 @@ export async function postApi<T = unknown>(url: string, payload: unknown): Promi
       success: false,
       error: {
         code: 'NETWORK_ERROR',
-        message: 'Unable to connect to the server. Please check your internet connection and try again.',
+        message: 'Unable to connect to the server. Please check your network connection.',
+      },
+    };
+  }
+}
+
+export async function patchApi<T = unknown>(url: string, payload: unknown): Promise<ApiResponse<T>> {
+  try {
+    const res = await fetch(url, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const json = await res.json();
+
+    if (!res.ok || !json.success) {
+      return {
+        success: false,
+        error: json.error || {
+          code: 'HTTP_ERROR',
+          message: json.message || `Request failed with status ${res.status}`,
+        },
+      };
+    }
+
+    return json;
+  } catch (err: unknown) {
+    console.error(`API Error PATCH ${url}:`, err);
+    return {
+      success: false,
+      error: {
+        code: 'NETWORK_ERROR',
+        message: 'Unable to connect to the server. Please check your network connection.',
+      },
+    };
+  }
+}
+
+export async function deleteApi<T = unknown>(url: string): Promise<ApiResponse<T>> {
+  try {
+    const res = await fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const json = await res.json();
+
+    if (!res.ok || !json.success) {
+      return {
+        success: false,
+        error: json.error || {
+          code: 'HTTP_ERROR',
+          message: json.message || `Request failed with status ${res.status}`,
+        },
+      };
+    }
+
+    return json;
+  } catch (err: unknown) {
+    console.error(`API Error DELETE ${url}:`, err);
+    return {
+      success: false,
+      error: {
+        code: 'NETWORK_ERROR',
+        message: 'Unable to connect to the server. Please check your network connection.',
       },
     };
   }

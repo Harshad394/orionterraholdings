@@ -57,7 +57,7 @@ export function PropertyFilters({
           value={filters.search}
           onChange={(e) => onFilterChange({ search: e.target.value })}
           placeholder="Search location, city, title, or Property ID (e.g. OT-MH-001)..."
-          className="w-full rounded-lg bg-[#17243A] border border-white/10 pl-11 pr-4 py-3 text-sm text-white placeholder-gray-400 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-colors"
+          className="w-full rounded-lg bg-[#17243A] border border-white/10 pl-11 pr-4 py-3 text-sm text-white placeholder-gray-400 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition-colors"
         />
       </div>
 
@@ -69,7 +69,7 @@ export function PropertyFilters({
           <select
             value={filters.city}
             onChange={(e) => onFilterChange({ city: e.target.value })}
-            className="w-full rounded-lg bg-[#17243A] border border-white/10 px-3 py-2 text-xs text-white focus:border-emerald-500 focus:outline-none"
+            className="w-full rounded-lg bg-[#17243A] border border-white/10 px-3 py-2 text-xs text-white focus:border-amber-500 focus:outline-none"
           >
             <option value="">All Cities</option>
             {CITIES.map((c) => (
@@ -86,7 +86,7 @@ export function PropertyFilters({
           <select
             value={filters.propertyType}
             onChange={(e) => onFilterChange({ propertyType: e.target.value })}
-            className="w-full rounded-lg bg-[#17243A] border border-white/10 px-3 py-2 text-xs text-white focus:border-emerald-500 focus:outline-none"
+            className="w-full rounded-lg bg-[#17243A] border border-white/10 px-3 py-2 text-xs text-white focus:border-amber-500 focus:outline-none"
           >
             <option value="">All Property Types</option>
             {PROPERTY_TYPES.map((type) => (
@@ -103,7 +103,7 @@ export function PropertyFilters({
           <select
             value={filters.opportunityType}
             onChange={(e) => onFilterChange({ opportunityType: e.target.value })}
-            className="w-full rounded-lg bg-[#17243A] border border-white/10 px-3 py-2 text-xs text-white focus:border-emerald-500 focus:outline-none"
+            className="w-full rounded-lg bg-[#17243A] border border-white/10 px-3 py-2 text-xs text-white focus:border-amber-500 focus:outline-none"
           >
             <option value="">All Opportunities</option>
             {OPPORTUNITY_TYPES.map((opp) => (
@@ -126,7 +126,7 @@ export function PropertyFilters({
               <span>Clear Filters</span>
             </button>
           ) : (
-            <div className="w-full flex items-center justify-center px-3 py-2 text-xs text-emerald-400 bg-emerald-500/10 rounded-lg border border-emerald-500/20">
+            <div className="w-full flex items-center justify-center px-3 py-2 text-xs text-amber-400 bg-amber-500/10 rounded-lg border border-amber-500/20 shadow-[0_0_10px_rgba(245,158,11,0.1)]">
               <span>{totalCount} Opportunities Found</span>
             </div>
           )}

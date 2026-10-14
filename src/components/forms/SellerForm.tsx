@@ -145,8 +145,8 @@ export function SellerForm() {
   return (
     <div className="rounded-2xl border border-white/10 bg-[#111C2E] p-6 sm:p-8 lg:p-10 shadow-2xl max-w-4xl mx-auto space-y-8">
       {submittedId ? (
-        <div className="rounded-xl bg-emerald-500/10 border border-emerald-500/30 p-8 text-center space-y-6">
-          <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400">
+        <div className="rounded-xl bg-amber-500/10 border border-amber-500/30 p-8 text-center space-y-6">
+          <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-amber-500/20 text-amber-400">
             <CheckCircle2 className="h-8 w-8" />
           </div>
           <div className="space-y-2">
@@ -154,12 +154,12 @@ export function SellerForm() {
             <p className="text-sm text-gray-300 max-w-lg mx-auto leading-relaxed">
               Thank you for submitting your land details for{' '}
               <span className="text-white font-semibold">{formData.propertyLocation}</span> in{' '}
-              <span className="text-emerald-400 font-semibold">{formData.city}</span>.
+              <span className="text-amber-400 font-semibold">{formData.city}</span>.
             </p>
           </div>
 
           <div className="text-xs text-gray-300 bg-white/5 p-4 rounded-xl border border-white/10 max-w-md mx-auto space-y-1">
-            <div className="text-emerald-400 font-bold">Status: Pending Orion Terra Admin Review</div>
+            <div className="text-amber-400 font-bold">Status: Pending Orion Terra Admin Review</div>
             <p className="text-[11px] text-gray-400">
               Reference Submission ID: <span className="font-mono text-white">{submittedId}</span>
             </p>
@@ -207,7 +207,7 @@ export function SellerForm() {
           {/* Section 1: Seller Contact Info */}
           <div className="space-y-4">
             <div className="flex items-center gap-3 border-b border-white/10 pb-3">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20">
                 <Building2 className="h-4 w-4" />
               </div>
               <h3 className="text-lg font-bold text-white">1. Seller / Landowner Contact Information</h3>
@@ -216,7 +216,7 @@ export function SellerForm() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-xs font-semibold text-gray-300 mb-1">
-                  Full Name <span className="text-emerald-400">*</span>
+                  Full Name <span className="text-amber-400">*</span>
                 </label>
                 <input
                   type="text"
@@ -226,7 +226,7 @@ export function SellerForm() {
                   onChange={(e) => setFormData({ ...formData, sellerName: e.target.value })}
                   placeholder="e.g. Rajesh Patil"
                   className={`w-full rounded-lg bg-[#17243A] border px-3.5 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none ${
-                    fieldErrors.sellerName ? 'border-red-500' : 'border-white/10 focus:border-emerald-500'
+                    fieldErrors.sellerName ? 'border-red-500' : 'border-white/10 focus:border-amber-500'
                   }`}
                 />
                 {fieldErrors.sellerName && (
@@ -236,7 +236,7 @@ export function SellerForm() {
 
               <div>
                 <label className="block text-xs font-semibold text-gray-300 mb-1">
-                  Phone Number <span className="text-emerald-400">*</span>
+                  Phone Number <span className="text-amber-400">*</span>
                 </label>
                 <input
                   type="tel"
@@ -246,7 +246,7 @@ export function SellerForm() {
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   placeholder="+91 98765 43210"
                   className={`w-full rounded-lg bg-[#17243A] border px-3.5 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none ${
-                    fieldErrors.phone ? 'border-red-500' : 'border-white/10 focus:border-emerald-500'
+                    fieldErrors.phone ? 'border-red-500' : 'border-white/10 focus:border-amber-500'
                   }`}
                 />
                 {fieldErrors.phone && (
@@ -263,7 +263,7 @@ export function SellerForm() {
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="rajesh@example.com"
                   className={`w-full rounded-lg bg-[#17243A] border px-3.5 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none ${
-                    fieldErrors.email ? 'border-red-500' : 'border-white/10 focus:border-emerald-500'
+                    fieldErrors.email ? 'border-red-500' : 'border-white/10 focus:border-amber-500'
                   }`}
                 />
                 {fieldErrors.email && (
@@ -279,7 +279,7 @@ export function SellerForm() {
                   value={formData.company}
                   onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                   placeholder="e.g. Patil Realtors / Family Trust"
-                  className="w-full rounded-lg bg-[#17243A] border border-white/10 px-3.5 py-2.5 text-sm text-white placeholder-gray-500 focus:border-emerald-500 focus:outline-none"
+                  className="w-full rounded-lg bg-[#17243A] border border-white/10 px-3.5 py-2.5 text-sm text-white placeholder-gray-500 focus:border-amber-500 focus:outline-none"
                 />
               </div>
             </div>
@@ -288,7 +288,7 @@ export function SellerForm() {
           {/* Section 2: Land Location & Area */}
           <div className="space-y-4">
             <div className="flex items-center gap-3 border-b border-white/10 pb-3">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20">
                 <MapPin className="h-4 w-4" />
               </div>
               <h3 className="text-lg font-bold text-white">2. Land Location & Specifications</h3>
@@ -297,7 +297,7 @@ export function SellerForm() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="sm:col-span-3">
                 <label className="block text-xs font-semibold text-gray-300 mb-1">
-                  Property Location / Address <span className="text-emerald-400">*</span>
+                  Property Location / Address <span className="text-amber-400">*</span>
                 </label>
                 <input
                   type="text"
@@ -307,7 +307,7 @@ export function SellerForm() {
                   onChange={(e) => setFormData({ ...formData, propertyLocation: e.target.value })}
                   placeholder="e.g. Plot No. 45, Ghodbunder Highway Sector 2"
                   className={`w-full rounded-lg bg-[#17243A] border px-3.5 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none ${
-                    fieldErrors.propertyLocation ? 'border-red-500' : 'border-white/10 focus:border-emerald-500'
+                    fieldErrors.propertyLocation ? 'border-red-500' : 'border-white/10 focus:border-amber-500'
                   }`}
                 />
                 {fieldErrors.propertyLocation && (
@@ -317,7 +317,7 @@ export function SellerForm() {
 
               <div>
                 <label className="block text-xs font-semibold text-gray-300 mb-1">
-                  City <span className="text-emerald-400">*</span>
+                  City <span className="text-amber-400">*</span>
                 </label>
                 <input
                   type="text"
@@ -327,7 +327,7 @@ export function SellerForm() {
                   onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                   placeholder="e.g. Thane"
                   className={`w-full rounded-lg bg-[#17243A] border px-3.5 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none ${
-                    fieldErrors.city ? 'border-red-500' : 'border-white/10 focus:border-emerald-500'
+                    fieldErrors.city ? 'border-red-500' : 'border-white/10 focus:border-amber-500'
                   }`}
                 />
                 {fieldErrors.city && (
@@ -342,14 +342,14 @@ export function SellerForm() {
                   disabled={submitting}
                   value={formData.state}
                   onChange={(e) => setFormData({ ...formData, state: e.target.value })}
-                  className="w-full rounded-lg bg-[#17243A] border border-white/10 px-3.5 py-2.5 text-sm text-white focus:border-emerald-500 focus:outline-none"
+                  className="w-full rounded-lg bg-[#17243A] border border-white/10 px-3.5 py-2.5 text-sm text-white focus:border-amber-500 focus:outline-none"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-xs font-semibold text-gray-300 mb-1">
-                    Land Area <span className="text-emerald-400">*</span>
+                    Land Area <span className="text-amber-400">*</span>
                   </label>
                   <input
                     type="number"
@@ -360,7 +360,7 @@ export function SellerForm() {
                     onChange={(e) => setFormData({ ...formData, landArea: e.target.value })}
                     placeholder="25000"
                     className={`w-full rounded-lg bg-[#17243A] border px-3 py-2.5 text-sm text-white focus:outline-none ${
-                      fieldErrors.landArea ? 'border-red-500' : 'border-white/10 focus:border-emerald-500'
+                      fieldErrors.landArea ? 'border-red-500' : 'border-white/10 focus:border-amber-500'
                     }`}
                   />
                   {fieldErrors.landArea && (
@@ -373,7 +373,7 @@ export function SellerForm() {
                     disabled={submitting}
                     value={formData.landAreaUnit}
                     onChange={(e) => setFormData({ ...formData, landAreaUnit: e.target.value as LandAreaUnit })}
-                    className="w-full rounded-lg bg-[#17243A] border border-white/10 px-2 py-2.5 text-xs text-white focus:border-emerald-500 focus:outline-none"
+                    className="w-full rounded-lg bg-[#17243A] border border-white/10 px-2 py-2.5 text-xs text-white focus:border-amber-500 focus:outline-none"
                   >
                     <option value="sq.ft">sq.ft</option>
                     <option value="sq.m">sq.m</option>
@@ -393,7 +393,7 @@ export function SellerForm() {
                   disabled={submitting}
                   value={formData.propertyType}
                   onChange={(e) => setFormData({ ...formData, propertyType: e.target.value as PropertyType })}
-                  className="w-full rounded-lg bg-[#17243A] border border-white/10 px-3 py-2.5 text-xs text-white focus:border-emerald-500 focus:outline-none"
+                  className="w-full rounded-lg bg-[#17243A] border border-white/10 px-3 py-2.5 text-xs text-white focus:border-amber-500 focus:outline-none"
                 >
                   <option value="Residential">Residential</option>
                   <option value="Commercial">Commercial</option>
@@ -410,7 +410,7 @@ export function SellerForm() {
                   disabled={submitting}
                   value={formData.opportunityType}
                   onChange={(e) => setFormData({ ...formData, opportunityType: e.target.value as OpportunityType })}
-                  className="w-full rounded-lg bg-[#17243A] border border-white/10 px-3 py-2.5 text-xs text-white focus:border-emerald-500 focus:outline-none"
+                  className="w-full rounded-lg bg-[#17243A] border border-white/10 px-3 py-2.5 text-xs text-white focus:border-amber-500 focus:outline-none"
                 >
                   <option value="Direct Sale">Direct Sale</option>
                   <option value="Redevelopment">Redevelopment</option>
@@ -429,7 +429,7 @@ export function SellerForm() {
                   value={formData.expectedPrice}
                   onChange={(e) => setFormData({ ...formData, expectedPrice: e.target.value })}
                   placeholder="₹ e.g. 45000000"
-                  className="w-full rounded-lg bg-[#17243A] border border-white/10 px-3.5 py-2.5 text-sm text-white placeholder-gray-500 focus:border-emerald-500 focus:outline-none"
+                  className="w-full rounded-lg bg-[#17243A] border border-white/10 px-3.5 py-2.5 text-sm text-white placeholder-gray-500 focus:border-amber-500 focus:outline-none"
                 />
               </div>
             </div>
@@ -438,7 +438,7 @@ export function SellerForm() {
           {/* Section 3: Details & Documents */}
           <div className="space-y-4">
             <div className="flex items-center gap-3 border-b border-white/10 pb-3">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20">
                 <FileCheck className="h-4 w-4" />
               </div>
               <h3 className="text-lg font-bold text-white">3. Property Description & Documents</h3>
@@ -446,7 +446,7 @@ export function SellerForm() {
 
             <div>
               <label className="block text-xs font-semibold text-gray-300 mb-1">
-                Description <span className="text-emerald-400">*</span>
+                Description <span className="text-amber-400">*</span>
               </label>
               <textarea
                 rows={4}
@@ -456,7 +456,7 @@ export function SellerForm() {
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 placeholder="Tell us about key highlights, road access, zoning, surrounding landmarks..."
                 className={`w-full rounded-lg bg-[#17243A] border px-3.5 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none ${
-                  fieldErrors.description ? 'border-red-500' : 'border-white/10 focus:border-emerald-500'
+                  fieldErrors.description ? 'border-red-500' : 'border-white/10 focus:border-amber-500'
                 }`}
               />
               {fieldErrors.description && (
@@ -478,7 +478,7 @@ export function SellerForm() {
                       value={option}
                       checked={formData.documentsAvailable === option}
                       onChange={(e) => setFormData({ ...formData, documentsAvailable: e.target.value })}
-                      className="text-emerald-500 focus:ring-emerald-500"
+                      className="text-amber-500 focus:ring-amber-500"
                     />
                     <span>{option}</span>
                   </label>
@@ -497,7 +497,7 @@ export function SellerForm() {
                   disabled={submitting}
                   checked={formData.consent}
                   onChange={(e) => setFormData({ ...formData, consent: e.target.checked })}
-                  className="mt-0.5 rounded border-white/20 bg-[#17243A] text-emerald-500 focus:ring-emerald-500"
+                  className="mt-0.5 rounded border-white/20 bg-[#17243A] text-amber-500 focus:ring-amber-500"
                 />
                 <span>
                   I confirm that the information provided is accurate to the best of my knowledge and agree to be contacted by Orion Terra regarding this submission.

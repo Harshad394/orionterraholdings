@@ -1,22 +1,23 @@
 import connectToDatabase from '@/lib/db/mongodb';
-import Property, { IProperty } from '@/models/Property';
+import Property from '@/models/Property';
 import { propertyQuerySchema, PropertyQueryInput } from '@/lib/validations/property';
 import { Property as PropertyDTO } from '@/types/property';
 
-export function mapPropertyToDTO(doc: IProperty): PropertyDTO {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function mapPropertyToDTO(doc: any): PropertyDTO {
   return {
-    id: doc._id.toString(),
+    id: doc._id ? doc._id.toString() : String(doc.id || ''),
     propertyId: doc.propertyId,
     slug: doc.slug,
     title: doc.title,
     description: doc.description,
     location: {
-      address: doc.location.address,
-      city: doc.location.city,
-      state: doc.location.state,
-      country: doc.location.country,
-      latitude: doc.location.latitude,
-      longitude: doc.location.longitude,
+      address: doc.location?.address || '',
+      city: doc.location?.city || '',
+      state: doc.location?.state || '',
+      country: doc.location?.country || 'India',
+      latitude: doc.location?.latitude,
+      longitude: doc.location?.longitude,
     },
     landArea: doc.landArea,
     landAreaUnit: doc.landAreaUnit,
@@ -28,8 +29,8 @@ export function mapPropertyToDTO(doc: IProperty): PropertyDTO {
     featured: doc.featured || false,
     status: doc.status,
     sellerSubmissionId: doc.sellerSubmissionId ? doc.sellerSubmissionId.toString() : undefined,
-    createdAt: doc.createdAt ? doc.createdAt.toISOString() : new Date().toISOString(),
-    updatedAt: doc.updatedAt ? doc.updatedAt.toISOString() : new Date().toISOString(),
+    createdAt: doc.createdAt instanceof Date ? doc.createdAt.toISOString() : (doc.createdAt ? new Date(doc.createdAt).toISOString() : new Date().toISOString()),
+    updatedAt: doc.updatedAt instanceof Date ? doc.updatedAt.toISOString() : (doc.updatedAt ? new Date(doc.updatedAt).toISOString() : new Date().toISOString()),
   };
 }
 
@@ -105,6 +106,7 @@ export async function getPublishedProperties(params: PropertyQueryInput = {}) {
       .sort({ featured: -1, createdAt: -1 })
       .skip(skip)
       .limit(limit)
+      .lean()
       .exec(),
     Property.countDocuments(filterQuery),
   ]);
@@ -125,7 +127,7 @@ export async function getPublishedProperties(params: PropertyQueryInput = {}) {
 export async function getPublishedPropertyBySlug(slug: string): Promise<PropertyDTO | null> {
   await connectToDatabase();
 
-  const doc = await Property.findOne({ slug, status: 'PUBLISHED' }).exec();
+  const doc = await Property.findOne({ slug, status: 'PUBLISHED' }).lean().exec();
   if (!doc) {
     return null;
   }
@@ -136,7 +138,7 @@ export async function getPublishedPropertyBySlug(slug: string): Promise<Property
 export async function getPublishedPropertyById(id: string): Promise<PropertyDTO | null> {
   await connectToDatabase();
 
-  const doc = await Property.findOne({ _id: id, status: 'PUBLISHED' }).exec();
+  const doc = await Property.findOne({ _id: id, status: 'PUBLISHED' }).lean().exec();
   if (!doc) {
     return null;
   }
