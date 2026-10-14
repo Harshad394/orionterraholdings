@@ -33,7 +33,7 @@ export function Navbar() {
           </div>
           <div className="flex flex-col">
             <span className="text-xl font-bold tracking-tight text-white group-hover:text-amber-400 transition-colors">
-              ORION TERRA HOLDING'S
+              ORION TERRA HOLDING&apos;S
             </span>
             <span className="text-[10px] tracking-widest text-amber-400/80 font-medium uppercase">
               Land Marketplace
